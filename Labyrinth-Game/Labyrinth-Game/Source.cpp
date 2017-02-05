@@ -60,7 +60,7 @@ int main() {
 
 	int Sel = 0;
 	//ScrollText("What game you wanna play?\n\n1.) EZ LITTLE BALLS NUB MODE\n2.) TRUE MANLY BALLS MODE\n");
-	MatrixText("What game you wanna play?");
+	ScrollText("What game you wanna play?");
 	std::cout << "\n\n";
 	MatrixText("1.) EZ LITTLE BALLS NUB MODE\n");
 	MatrixText("2.) TRUE MANLY BALLS MODE\n");
@@ -115,7 +115,7 @@ int main() {
 		Sleep(3000);
 		system("cls");
 		MatrixText("Naw i am just kidding...\n");
-		MatrixText("HERE it is.\n");
+		ScrollText("HERE it is.\n");
 		Sleep(500);
 
 		GameStr = "#######################################################################################################################################################\n"
