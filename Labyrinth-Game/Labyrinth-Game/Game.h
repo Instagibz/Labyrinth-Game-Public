@@ -32,7 +32,7 @@ public:
 
 	
 	Labyrinth_Game::Labyrinth_Game(std::string Labyrinth);
-	Labyrinth_Game::~Labyrinth_Game();
+	Labyrinth_Game::~Labyrinth_Game(void);
 
 	void Labyrinth_Game::DrawGame(void);
 	void Labyrinth_Game::ParseBoard(void);
