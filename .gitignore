@@ -250,3 +250,5 @@ paket-files/
 # JetBrains Rider
 .idea/
 *.sln.iml
+/Labyrinth-Game/Labyrinth-Game/DNA.cpp
+/Labyrinth-Game/Labyrinth-Game/DNA.h
