@@ -14,20 +14,64 @@ void ScrollText(std::string Text) {
 		int random = rand() % 20 + 10;
 		Sleep(random);
 	}
-
 }
+
+void MatrixText(std::string Text) {
+	CONSOLE_SCREEN_BUFFER_INFO SCRBUF = {};
+	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &SCRBUF);
+
+	bool Matrix = true;
+	std::string TempStr;
+	DWORD BytesWritten = NULL;
+
+	while (Matrix) {
+
+		for (int i = 0; i < 30; i++) {
+			Sleep(35);
+			TempStr.clear();
+
+			for (int k = 0; k < Text.size(); k++) {
+				COORD ConsoleCoord = { SCRBUF.dwCursorPosition.X + k, SCRBUF.dwCursorPosition.Y };
+
+				WriteConsoleOutputCharacterA(GetStdHandle(STD_OUTPUT_HANDLE), " ", sizeof(char), ConsoleCoord, &BytesWritten);
+			}
+			SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), SCRBUF.dwCursorPosition);
+			for (auto j : Text) {
+				if (rand() % 10 < 3) { TempStr.push_back(rand() % 60 + 30); }
+				else { TempStr.push_back(j); }
+			}
+
+			std::cout << TempStr;
+		}
+		for (int k = 0; k < Text.size(); k++) {
+			COORD ConsoleCoord = { SCRBUF.dwCursorPosition.X + k, SCRBUF.dwCursorPosition.Y };
+
+			WriteConsoleOutputCharacterA(GetStdHandle(STD_OUTPUT_HANDLE), " ", sizeof(char), ConsoleCoord, &BytesWritten);
+		}
+		SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), SCRBUF.dwCursorPosition);
+		std::cout << Text;
+		Matrix = false;
+	}
+}
+
 
 int main() {
 	SetConsoleTitle(L"Very Easy Labyrinth-Game by Instagibz");
 
 	int Sel = 0;
-	ScrollText("What game you wanna play?\n\n1.) EZ LITTLE BALLS NUB MODE\n2.) TRUE MANLY BALLS MODE\n");
+	//ScrollText("What game you wanna play?\n\n1.) EZ LITTLE BALLS NUB MODE\n2.) TRUE MANLY BALLS MODE\n");
+	MatrixText("What game you wanna play?");
+	std::cout << "\n\n";
+	MatrixText("1.) EZ LITTLE BALLS NUB MODE\n");
+	MatrixText("2.) TRUE MANLY BALLS MODE\n");
+
+
 	std::cin >> Sel;
 	std::string GameStr;
 
 	if (Sel == 1) {
 		system("cls");
-		ScrollText("Starting ez pz everytime mode\n");
+		MatrixText("Starting ez pz everytime mode\n");
 		Sleep(1500);
 
 		GameStr = "##################\n"
@@ -47,13 +91,13 @@ int main() {
 
 	else if (Sel == 2) {
 		system("cls");
-		ScrollText("Starting consistent big balls mode in...\n");
+		MatrixText("Starting consistent big balls mode in...\n");
 		Sleep(500);
-		ScrollText("3...\n");
+		MatrixText("3...\n");
 		Sleep(1000);
-		ScrollText("2...\n");
+		MatrixText("2...\n");
 		Sleep(1000);
-		ScrollText("1...\n");
+		MatrixText("1...\n");
 		Sleep(1000);
 		system("cls");
 		std::cout << "##################\n"
@@ -70,8 +114,8 @@ int main() {
 			"##################\n" << std::endl;
 		Sleep(3000);
 		system("cls");
-		ScrollText("Naw i am just kidding...\n");
-		ScrollText("HERE it is.\n");
+		MatrixText("Naw i am just kidding...\n");
+		MatrixText("HERE it is.\n");
 		Sleep(500);
 
 		GameStr = "#######################################################################################################################################################\n"
@@ -115,7 +159,7 @@ int main() {
 			"####**#**################**#**#############**####**#**####**##########**####**##########**#**#**#############**#######**####**####**#**#############**#\n"
 			"#*****#********************#*****************#*****#*****************#*****#********************************#********#********************************!\n"
 			"#######################################################################################################################################################\n";
-	
+
 		RECT ConsoleRect;
 		HWND ConsoleWindow = GetConsoleWindow();
 		GetWindowRect(ConsoleWindow, &ConsoleRect);
